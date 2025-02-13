@@ -2,7 +2,6 @@
 
 name: world_happiness
 channels:
-  - pytorch
   - conda-forge
   - defaults
 dependencies:
