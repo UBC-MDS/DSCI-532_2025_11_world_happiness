@@ -11,6 +11,6 @@ dependencies:
   - pandas=2.2
   - matplotlib>=3.2,<4.0
   - numpy=1.26
-  - pycountry_convert
+  - pycountry-convert
   - pip
   - pip:
