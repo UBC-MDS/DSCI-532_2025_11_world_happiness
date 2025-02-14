@@ -1,0 +1,15 @@
+# install with conda env create -f environment.yml
+
+name: world_happiness
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - ipykernel
+  - pandas=2.2
+  - matplotlib>=3.2,<4.0
+  - numpy=1.26
+  - pip
+  - pip:
+    - country_converter
