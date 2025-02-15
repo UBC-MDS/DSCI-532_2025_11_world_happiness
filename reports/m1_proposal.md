@@ -32,11 +32,11 @@ Our data consists of 5 datasets, one dataset from each year from 2020-2024, from
 
 We will also derive `Happiness Rank Change`, which will be a numerical column capturing the difference in a countries ranking between years. Additionally, we will create a numerical feature called `regional average`, which aggregates happiness scores across continents for regional comparison.These engineered features will enable users to explore and understand global well-being on a deeper level.
 
-Additionally, we will combine these datasets and ensure every country is assigned to a region.
+The datasets will be loaded from the World Happiness Report website. Additionally, we will combine these datasets and ensure every country is assigned to a region.
 
 ## Research Questions and Usage Scenarios
 
-Tomasz is a 30-year-old businessman who is a citizen in Poland and has lived there all his life. He wants to explore the possibility of immigrating to another country as he is unhappy with the political situations and lifestyles in his country. He wants to see which countries offer the best possible conditions for him and his girlfriend to live in long-term and wants to pick a country based on factors including level of corruption, citizen freedom, GDP, and potential others, that are important to him.
+Tomasz is a 30-year-old businessman. He wants to explore the possibility of immigrating to another country as he is unhappy with the political situations and lifestyles in his country. He wants to see which countries offer the best possible conditions for him and his girlfriend to live in long-term and wants to pick a country based on factors including level of corruption, citizen freedom, GDP, and potential others, that are important to him.
 
 When Tomasz opens the app, he will be shown step-by-step instructions leading him to first explore continents of his interest, then explore countries of his interest based on the different happiness criteria, navigating from the left to right side of the page. Tomasz starts by selecting a continent then choosing how many countries they would like to see in the result using an interactive slider, as well as the happiness criteria (e.g. GDP, Freedom, etc). Upon selection of continent, map will zoom into the continent chosen, and Tomasz will be shown line charts of the top countries according to the chosen criteria for comparison. If after viewing these, he has some ideas about which countries might be his favourites, he can then continue to the right to select his top 5 most important happiness criteria and the countries he would like to see compared in those criteria. A radar chart will be shown at the bottom right. Here, countries of different continents can be selected for comparison.
 
