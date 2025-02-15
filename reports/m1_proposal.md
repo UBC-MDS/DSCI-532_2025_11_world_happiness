@@ -32,7 +32,7 @@ Our data consists of 5 datasets, one dataset from each year from 2020-2024, from
 
 We will also derive `Happiness Rank Change`, which will be a numerical column capturing the difference in a countries ranking between years. Additionally, we will create a numerical feature called `regional average`, which aggregates happiness scores across continents for regional comparison.These engineered features will enable users to explore and understand global well-being on a deeper level.
 
-Additionally, we will combine these datasets and ensure every country is assigned to a region.
+The datasets will be loaded from the World Happiness Report website. Additionally, we will combine these datasets and ensure every country is assigned to a region.
 
 ## Research Questions and Usage Scenarios
 
