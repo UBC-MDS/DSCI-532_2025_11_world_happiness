@@ -56,4 +56,4 @@ By integrating these interactive components, the application enables users to ex
 
 <br><br>
 
-![app sketch](sketch.jpg "App Sketch")
+![app sketch](../img/sketch.png "App Sketch")
