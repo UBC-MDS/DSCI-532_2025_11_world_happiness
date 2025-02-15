@@ -1,3 +1,3 @@
-# DSCI-532_2025_11_world_happiness
+# World Happiness Dashboard
 
-Welcome to our dashboard!
+Welcome to the World Happiness Dashboard! This tool offers insights into the World Happiness Dataset (2024), helping you explore factors that influence happiness across different countries. Filter by continent or specific happiness criteria to discover key insights, compare nations, and identify potential destinations for immigration based on your priorities.
