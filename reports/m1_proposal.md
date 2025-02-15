@@ -42,7 +42,7 @@ When Tomasz opens the app, he will be shown step-by-step instructions leading hi
 
 For example, Tomasz may decide to choose Europe as a continent first and see which 5 European countries rank highest in the 3 criteria of interest to him: Freedom, GDP, and Perception of Corruption. He may then change the continent to North America and Oceania and do similar comparisons. Afterwards, he decided France, Australia, and Canada are his top favourite countries around the world and used a radar chart to see how these 3 countries compare in his top 5 priorities: Freedom, Perception of Corruption, Life Expectancy, GDP, and Social Support. By examining the radar chart, he will get an overall picture of how the 3 countries compare according to his happiness priorities and make a final decision on where to immigrate to, or conduct further research on Google for any other questions that he has, such as immigration processes, to help him narrow down the selection.
 
-## App sketch & brief description
+## App Sketch & Brief Description
 
 The application consists of three key sections, each enabling users to explore and compare global happiness metrics independently. These sections provide interactive visualizations and filtering options to facilitate data exploration and analysis.
 
@@ -56,4 +56,4 @@ By integrating these interactive components, the application enables users to ex
 
 <br><br>
 
-![app sketch](sketch.jpg "App Sketch")
+![app sketch](../img/sketch.png "App Sketch")
