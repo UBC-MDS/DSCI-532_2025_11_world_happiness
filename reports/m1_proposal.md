@@ -20,15 +20,15 @@ Our data consists of 5 datasets, one dataset from each year from 2020-2024, from
 
 ### Data Types:
 
-- `Country Name`: name of country (categorical)
-- `Regional indicator`: geographical region (categorical) - not included in every years raw data, but added in our processed data
-- `Ladder score`: Overall happiness ranking (numerical)
-- `Explained by: Log GDP per capita`: Economic well-being (numerical)
-- `Explained by: Social support`: Social well-being (numerical)
-- `Explained by: Healthy life expectancy`: Expected healthy lifespan (numerical)
-- `Explained by: Freedom to make life choices`: Individual autonomy (numerical)
-- `Explained by: Generosity`: Generous behaviors in the country (numerical)
-- `Explained by: Perceptions of corruption`: Trust in institutions and government (numerical)
+-   `Country Name`: name of country (categorical)
+-   `Regional indicator`: geographical region (categorical) - not included in every years raw data, but added in our processed data
+-   `Ladder score`: Overall happiness ranking (numerical)
+-   `Explained by: Log GDP per capita`: Economic well-being (numerical)
+-   `Explained by: Social support`: Social well-being (numerical)
+-   `Explained by: Healthy life expectancy`: Expected healthy lifespan (numerical)
+-   `Explained by: Freedom to make life choices`: Individual autonomy (numerical)
+-   `Explained by: Generosity`: Generous behaviors in the country (numerical)
+-   `Explained by: Perceptions of corruption`: Trust in institutions and government (numerical)
 
 We will also derive `Happiness Rank Change`, which will be a numerical column capturing the difference in a countries ranking between years. Additionally, we will create a numerical feature called `regional average`, which aggregates happiness scores across continents for regional comparison.These engineered features will enable users to explore and understand global well-being on a deeper level.
 
@@ -44,8 +44,15 @@ For example, Tomasz may decide to choose Europe as a continent first and see whi
 
 ## App sketch & brief description
 
-[please add paragraph here]
-Tooltips showing data point values on hover are available on all charts and the map, and users can navigate to any future or previous steps at any time without having to follow any specific order, if they wish.
+The application consists of three key sections, each enabling users to explore and compare global happiness metrics independently. These sections provide interactive visualizations and filtering options to facilitate data exploration and analysis.
+
+-   **Left Panel:** This section features an interactive world map where users can filter by continent to examine individual countries' happiness rankings. Hovering over a country dynamically displays its happiness rank in a tooltip, offering an intuitive way to explore regional variations.
+
+-   **Middle Panel:** Users can analyze specific attributes such as Log GDP per capita and Social Support through an interactive slider and dropdown menus. The slider allows users to define the number of top-ranked countries to include, while the dropdown enables attribute selection. The selected attributes are visualized using line charts to show trends and comparisons across the chosen countries.
+
+-   **Right Panel:** This section provides multiple dropdown menus for users to select specific attributes and countries for direct comparison. A polygon (radar) plot is generated to illustrate the differences among the selected attributes across the chosen countries. Constraints are applied to ensure a manageable number of selections for clear and meaningful visualization.
+
+By integrating these interactive components, the application enables users to explore world happiness data from multiple perspectives, facilitating insights into regional patterns, key contributing factors, and cross-country comparisons.
 
 <br><br>
 
