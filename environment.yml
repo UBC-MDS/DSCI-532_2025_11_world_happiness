@@ -10,6 +10,10 @@ dependencies:
   - pandas=2.2
   - matplotlib>=3.2,<4.0
   - numpy=1.26
+  - ipykernel
+  - dash
+  - dash-bootstrap-components
+  - plotly
   - pip
   - pip:
-    - country_converter
+      - country_converter
