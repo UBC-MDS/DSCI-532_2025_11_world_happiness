@@ -39,3 +39,4 @@ def register_callbacks(app):
         filtered_df = filtered_df[filtered_df['Country'].isin(selected_countries)]
         
         return dcc.Graph(id='radar-chart', figure=radar_chart(filtered_df)), None
+    
