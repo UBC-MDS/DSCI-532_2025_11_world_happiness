@@ -56,3 +56,4 @@ def register_callbacks(app):
         fig = line_chart(filter_df, selected_feature)
 
         return [fig]
+
