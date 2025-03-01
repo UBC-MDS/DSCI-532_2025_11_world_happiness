@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 import dash_vega_components as dvc
 from dash import Dash, html, dcc, Input, Output, callback
 import pandas as pd
-from data import happiness_data, world_countries
+from data_map import happiness_data, world_countries
 
 
 # Initiatlize the app
