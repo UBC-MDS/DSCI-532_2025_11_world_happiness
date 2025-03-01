@@ -1,11 +1,12 @@
 from dash.dependencies import Input, Output
 from dash import html, dcc
 
-from components.charts import line_chart, radar_chart
-from components.data import happiness_data, all_features, all_countries
+from components.charts import line_chart, radar_chart, map_viz
+from components.data import happiness_data, all_features, all_countries, geo_countries
 
 import pandas as pd
-import plotly.express as px
+import altair as alt
+alt.data_transformers.enable('vegafusion')
 
 def register_callbacks(app):
    # No more than 5 categories can be selected
@@ -72,4 +73,20 @@ def register_callbacks(app):
     fig = line_chart(filter_df, selected_feature, selected_continent)
 
     return [fig]
+   
+   @app.callback(
+    Output('map', 'spec'),
+    Input('year-dropdown', 'value'),
+    Input('continent-dropdown', 'value')
+    )
+   def map(year_select, continent_select):
+    happiness_by_year = happiness_data[happiness_data['Year'] == year_select]
+    
+    if continent_select != 'All Continents':
+        filtered_df = happiness_by_year[happiness_by_year['Continent'] == continent_select]
+    else:
+        filtered_df = happiness_by_year
 
+    filtered_df = pd.merge(geo_countries, filtered_df, on="Country", how="left")
+    
+    return map_viz(filtered_df)

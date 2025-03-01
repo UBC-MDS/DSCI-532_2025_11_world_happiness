@@ -1,5 +1,6 @@
 import plotly.graph_objects as go
 import plotly.express as px
+import altair as alt
 
 def radar_chart(filtered_df):
    fig = go.Figure()
@@ -56,3 +57,14 @@ def line_chart(filtered_df, selected_feature, selected_continent):
                      annotation_position="top left",
                        line_color = "red")
     return fig
+
+def map_viz(filtered_df):
+    hover = alt.selection_point(fields=['Country'], on='pointerover', empty=False)
+
+    chart = alt.Chart(filtered_df, width=1200).mark_geoshape().encode(
+    color=alt.Color('Happiness Score', scale=alt.Scale(scheme='redyellowgreen'), legend=alt.Legend(title='Happiness Score')),
+    tooltip=['Country', alt.Tooltip('Happiness Score', format='.2f')],
+    stroke=alt.condition(hover, alt.value('white'), alt.value('#222222'))
+    ).configure(background='transparent').add_params(hover).interactive()
+
+    return chart.to_dict(format='vega')

@@ -14,9 +14,9 @@ all_years = [{"label": year, "value": year} for year in sorted(happiness_data["Y
 
 # world country data 
 url = "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
-world_countries = gpd.read_file(url)
+geo_countries = gpd.read_file(url)
 
-world_countries = world_countries[
+geo_countries = geo_countries[
     ["NAME", "CONTINENT", 'geometry']
 ].rename(
     columns = {'NAME': 'Country', 'CONTINENT':'Continent'}

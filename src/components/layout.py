@@ -1,10 +1,8 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
+import dash_vega_components as dvc
 
 from components.dropdowns import dropdown_multi_cat, dropdown_countries, dropdown_year, dropdown_feature_line_chart, dropdown_continents
-from components.data import happiness_data
-
-import pandas as pd
 
 features = ["Happiness Score", "GDP per Capita", "Social Support", "Healthy Life Expectancy", "Freedom to Make Life Choices",
             "Generosity", "Perceptions of Corruption"]
@@ -12,6 +10,10 @@ features = ["Happiness Score", "GDP per Capita", "Social Support", "Healthy Life
 
 layout = html.Div([
     dbc.Container([
+        # App title
+        dbc.Row([
+            dbc.Col(html.H1('World Happiness Dashboard'), width=10),
+            ]),
         # Step 1 - top level filters
         dbc.Row([
             dbc.Col(dropdown_year, width=6),
@@ -19,21 +21,20 @@ layout = html.Div([
             ]),
         # Step 1 - map
         dbc.Row([
-            # map - TODO!!
-            ]),
+            dbc.Col(dvc.Vega(id='map', spec={}), width=12, className="p-0")
+        ], justify="center"),
         dbc.Row([
-            # Column 1: Feature Trend Line Chart
+            # Step 2 - Line Chart
             dbc.Col(
                 html.Div([
                     html.H3("Regional Statistics"),
                     dropdown_feature_line_chart,
-                    # dropdown_region,
                     dcc.Graph(id="line-chart")
                 ]),
                 width=6
             ),
 
-            # Column 2: Steps 3, 4, 5
+            # Step 3, 4, 5 - Radar Chart
             dbc.Col(
                 html.Div([
                     html.H3("Compare Your Favourite Countries"),
@@ -45,5 +46,5 @@ layout = html.Div([
                 width=6
             )
         ])
-    ])
+    ], fluid=True)
 ])
