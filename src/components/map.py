@@ -51,8 +51,8 @@ def map(year_select, continent_select):
 
     hover = alt.selection_point(fields=['Country'], on='pointerover', empty=False)
     chart = alt.Chart(new_world_countries, width=600).mark_geoshape().encode(
-        color=alt.Color('Ladder Score', scale=alt.Scale(scheme='redyellowgreen'), legend=alt.Legend(title='Happiness Score')),
-        tooltip=['Country', alt.Tooltip('Ladder Score', format='.2f')],
+        color=alt.Color('Happiness Score', scale=alt.Scale(scheme='redyellowgreen'), legend=alt.Legend(title='Happiness Score')),
+        tooltip=['Country', alt.Tooltip('Happiness Score', format='.2f')],
         stroke=alt.condition(hover, alt.value('white'), alt.value('#222222'))
     ).configure(
         background='transparent'

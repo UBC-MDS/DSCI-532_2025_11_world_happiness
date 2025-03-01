@@ -1,59 +1,75 @@
 from dash.dependencies import Input, Output
 from dash import html, dcc
 
-#from components.data import all_cats, radar_dummy
-from components.charts import line_chart
+from components.charts import line_chart, radar_chart
+from components.data import happiness_data, all_features, all_countries
+
 import pandas as pd
 import plotly.express as px
 
 def register_callbacks(app):
-   # # No more than 5 categories can be selected
-   # @app.callback(
-   # [Output('dropdown_multi_cat', 'value'),
-   #  Output('dropdown_multi_cat', 'options')],
-   # [Input('dropdown_multi_cat', 'value')]  # Listen to changes in the dropdown's selected values
-   # )
-   # def limit_selected_values(selected_values):
-   #     if len(selected_values) == 5:        
-   #         updated_options = [option for option in all_cats if option['value'] in selected_values]
-   #     else:
-   #         updated_options = all_cats
-   #     
-   #     return selected_values, updated_options  # Return both the updated values and options
-   # 
-   # # Create radar chart
-   # @app.callback(
-   #     [Output('radar-chart-container', 'children'),
-   #     Output('message-container', 'children')],
-   #     [Input('dropdown_multi_cat', 'value'),
-   #     Input('dropdown_countries', 'value')]
-   #)
-    #def update_radar_chart(selected_categories, selected_countries):
-    #    
-    #    # If not 3-5 categories or more than 1 country selected, display message
-    #    if len(selected_categories) < 3 or len(selected_countries) < 2:
-    #        return None, html.Label('Choose 3-5 categories and more than 1 country')
-    #        # return go.Figure()
-    #    
-    #    # Filter the data based on selected categories
-    #    selected_categories.append('Country')
-    #    filtered_df = radar_dummy.loc[:, radar_dummy.columns.isin(selected_categories)]
-    #    filtered_df = filtered_df[filtered_df['Country'].isin(selected_countries)]
-    #    
-    #    return dcc.Graph(id='radar-chart', figure=radar_chart(filtered_df)), None
+   # No more than 5 categories can be selected
+   @app.callback(
+   [Output('dropdown_multi_cat', 'value'),
+    Output('dropdown_multi_cat', 'options')],
+   [Input('dropdown_multi_cat', 'value')]  # Listen to changes in the dropdown's selected values
+   )
+   def limit_selected_values(selected_values):
+       if len(selected_values) == 5:        
+           updated_options = [option for option in all_features if option['value'] in selected_values]
+       else:
+           updated_options = all_features
+       
+       return selected_values, updated_options  # Return both the updated values and options
+   
+    # No more than 3 countries can be selected
+   @app.callback(
+   [Output('dropdown_countries', 'value'),
+    Output('dropdown_countries', 'options')],
+   [Input('dropdown_countries', 'value')]  # Listen to changes in the dropdown's selected values
+   )
+   def limit_selected_values(selected_values):
+       if len(selected_values) == 3:        
+           updated_options = [option for option in all_countries if option['value'] in selected_values]
+       else:
+           updated_options = all_countries
+       
+       return selected_values, updated_options  # Return both the updated values and options
+   
+   
+   # Create radar chart
+   @app.callback(
+       [Output('radar-chart-container', 'children'),
+       Output('message-container', 'children')],
+       [Input('dropdown_multi_cat', 'value'),
+       Input('dropdown_countries', 'value'),
+       Input('year-dropdown', 'value')]
+   )
+   def update_radar_chart(selected_categories, selected_countries, selected_year):
+        
+    # If not 3-5 categories or more than 1 country selected, display message
+    if len(selected_categories) < 3 or len(selected_countries) < 2:
+        return None, html.Label('Choose 3-5 categories and up to 3 countries')
     
-    # Line chart added (Sepehr)
-    @app.callback(
-        [Output('line-chart', 'figure')],
-        [Input('feature-dropdown', 'value'),
-        Input('region-dropdown', 'value'),
-        Input('year-dropdown', 'value')])
+    # Filter the data based on selected categories
+    selected_categories.append('Country')
+    filtered_df = happiness_data.loc[:, happiness_data.columns.isin(selected_categories)]
+    filtered_df = filtered_df[(filtered_df['Country'].isin(selected_countries)) & (happiness_data["Year"] == selected_year)]
     
-    def update_line_chart(selected_feature, selected_region, selected_year):
-        df = pd.read_csv("data/processed/reporting_world_happiness_dataset.csv")
-        filter_df = df[(df["Region"] == selected_region) & (df["Year"] == selected_year)]
+    return dcc.Graph(id='radar-chart', figure=radar_chart(filtered_df)), None
+   
+   # Creat line chart 
+   @app.callback(
+    [Output('line-chart', 'figure')],
+    [Input('line-chart-feature-dropdown', 'value'),
+    Input('continent-dropdown', 'value'),
+    Input('year-dropdown', 'value')])   
+   def update_line_chart(selected_feature, selected_continent, selected_year):
+    if selected_continent == 'All Continents':
+       filter_df = happiness_data[(happiness_data["Year"] == selected_year)]
+    else:
+        filter_df = happiness_data[(happiness_data["Continent"] == selected_continent) & (happiness_data["Year"] == selected_year)]
+    fig = line_chart(filter_df, selected_feature, selected_continent)
 
-        fig = line_chart(filter_df, selected_feature)
-
-        return [fig]
+    return [fig]
 

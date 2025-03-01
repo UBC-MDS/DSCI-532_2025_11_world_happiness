@@ -1,16 +1,27 @@
 import pandas as pd
 import geopandas as gpd
+import os
 
+# happiness data
+file_path = os.path.join(os.path.dirname(__file__), "../../data/processed/reporting_happiness_dataset.csv")
+happiness_data = pd.read_csv(os.path.abspath(file_path))
 
-#radar_dummy = pd.read_csv('data/dummy.csv')
+cols = ['Happiness Score', 'GDP per Capita', 'Social Support', 'Healthy Life Expectancy', 'Freedom to Make Life Choices', 'Generosity', 'Perceptions of Corruption']
+all_features = [{'label': feature, 'value': feature} for feature in cols]
+all_countries = [{'label': country, 'value': country} for country in sorted(happiness_data['Country'].unique())]
+all_continents = [{'label': 'All Continents', 'value': 'All Continents'}] + [{'label': continent, 'value': continent} for continent in happiness_data['Continent'].unique()]
+all_years = [{"label": year, "value": year} for year in sorted(happiness_data["Year"].unique())]
 
-#all_cats = options=[{'label': cat, 'value': cat} for cat in list(radar_dummy)[1:]]
-#all_countries = options=[{'label': country, 'value': country} for country in radar_dummy['Country']]
+# world country data 
+url = "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
+world_countries = gpd.read_file(url)
 
-# load processed dataset
-df = pd.read_csv("data/processed/reporting_world_happiness_dataset.csv")
-
-all_cats = [{"label": col, "value": col} for col in df.columns if col not in ["Country", "Year", "Region", "Continent"]]
-all_countries = [{"label": country, "value": country} for country in df["Country"].unique()]
-
-
+world_countries = world_countries[
+    ["NAME", "CONTINENT", 'geometry']
+].rename(
+    columns = {'NAME': 'Country', 'CONTINENT':'Continent'}
+).replace(
+    {'Continent': ['North America', 'South America']}, 'Americas'
+).query(
+    'Continent != "Antarctica"'
+)
