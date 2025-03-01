@@ -5,11 +5,20 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - altair-all
   - python=3.11
   - ipykernel
   - pandas=2.2
   - matplotlib>=3.2,<4.0
   - numpy=1.26
+  - dash
+  - dash-bootstrap-components
+  - plotly
+  - jupyter
+  - nbconvert
   - pip
   - pip:
-    - country_converter
+      - country_converter
+      - geopandas
+      - dash-vega-components
+      - kagglehub
