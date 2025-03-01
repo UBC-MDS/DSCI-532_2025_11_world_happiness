@@ -1,0 +1,11 @@
+dash==2.16.*
+dash-bootstrap-components==1.5.*
+dash-vega-components==0.10.*
+flask==3.0.*
+gunicorn==21.2.*
+pandas==2.2.*
+geopandas==0.14.*
+plotly==5.*
+altair[all]==5.3.*
+vega-datasets==0.9.*
+numpy==1.26.*
