@@ -16,9 +16,9 @@ Our goal is to make the World Happiness Report more accessible to students, educ
 
 ## Description of the Data
 
-Our data compiles 5 datasets, one from each year between 2020-2024, from the World Happiness Report into a single dataset which includes approximately 140-150 countries. Key features include geographical information such as country and region, an overall happiness ranking, called `Ladder Score`, (renamed by us to `Happiness Score`) and 6 other features related to economy, social factors, and governance.
+Our data consists of 5 datasets, one dataset from each year from 2020-2024, from the World Happiness Report. These datasets cover approximately 140-150 countries per year. They include key features that contribute to each countries rank, called `Ladder Score` (happiness ranking). These features are related to economy, social factors, and governance.
 
-### Data Types
+### Data Types:
 
 -   `Country Name`: name of country (categorical)
 -   `Regional indicator`: geographical region (categorical) - not included in every years raw data, but added in our processed data
@@ -30,17 +30,9 @@ Our data compiles 5 datasets, one from each year between 2020-2024, from the Wor
 -   `Explained by: Generosity`: Generous behaviors in the country (numerical)
 -   `Explained by: Perceptions of corruption`: Trust in institutions and government (numerical)
 
-### Feature Engineering
+We will also derive `Happiness Rank Change`, which will be a numerical column capturing the difference in a countries ranking between years. Additionally, we will create a numerical feature called `regional average`, which aggregates happiness scores across continents for regional comparison.These engineered features will enable users to explore and understand global well-being on a deeper level.
 
-- regional average columns for each feature including `Ladder Score` (total: 7 columns), which averages regional features values for comparison (numerical)
-- `Continent` column that reflects the continent a country is belonged to for continent summaries and data visualization (categorical)
-
-These engineered features will enable users to explore and understand global well-being on a deeper level.
-
-### Data Cleaning
-
-- We ensured no missing data is present and all records correctly mapped to a Region and a Continent
-- We renamed features to ensure intuitive understanding by users
+The datasets will be loaded from the World Happiness Report website. Additionally, we will combine these datasets and ensure every country is assigned to a region.
 
 ## Research Questions and Usage Scenarios
 
