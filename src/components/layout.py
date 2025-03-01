@@ -45,6 +45,9 @@ layout = html.Div([
                 ]),
                 width=6
             )
-        ])
+        ]),
+        dbc.Row([
+            dbc.Col(html.Label('The World Happiness Dashboard provides an overview of countries and continents on economical, political factors that contribute to life quality and satisfaction. Additionally, an overall "Happiness Score" is provided for each country. You can apply filtering criteria such as GDP, Perception of Corruption or other factors that matter to you and see how countries compare to each other over the past 5 years. This app is developed by Yuhan Fan, Sepehr Heydarian, Jessica Kuo, and Susannah Sun, and deployed on Mar 1, 2025.'))
+        ], justify="center")
     ], fluid=True)
 ])
