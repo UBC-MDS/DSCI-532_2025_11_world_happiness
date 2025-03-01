@@ -20,3 +20,4 @@ dependencies:
       - country_converter
       - geopandas
       - dash-vega-components
+      - kagglehub
