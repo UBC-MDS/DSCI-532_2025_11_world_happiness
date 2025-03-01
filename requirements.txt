@@ -13,5 +13,5 @@ jupyter==1.1.*
 nbconvert==7.16.*
 ipykernel==6.29.*
 country_converter==1.3
-geopandas==1.0.*
+geopandas
 kagglehub==0.3.*
