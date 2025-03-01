@@ -4,7 +4,7 @@ Welcome to the World Happiness Dashboard! This tool offers insights into the Wor
 
 ## Motivation
 
-For those looking to immigrate to new countries, it can be time-consuming to search up statistics about new countries and make decisions on which countries look most promising to settle in. Our dashboard provides an overview of countries and continents on economical, political factors that contribute to life quality and satisfaction. Additionally, an overall "Happiness Score" is provided for each country. You can apply filtering criteria such as GDP, Perception of Corruption or other factors that matter to you and see how countries compare to each other over the past 5 years.
+For those looking to immigrate to new countries, it can be time-consuming to search up statistics about new countries and make decisions on which countries look most promising to settle in. Our dashboard provides an overview of countries and continents on economical, political factors that contribute to life quality and satisfaction. Additionally, an overall "Happiness Score" is provided for each country. You can apply filtering criteria such as GDP, Perception of Corruption or other factors that matter to you and see how countries compare to each other from 2020 to 2024.
 
 ## Web App
 
