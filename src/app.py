@@ -1,5 +1,11 @@
-from dash import Dash, html, dcc
+from dash import Dash
 import dash_bootstrap_components as dbc
+
+import sys
+import os
+
+# Ensure the 'src' directory is in the Python path
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from components.callbacks import register_callbacks
 from components.layout import layout
