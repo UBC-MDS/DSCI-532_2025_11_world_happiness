@@ -8,8 +8,8 @@ For those looking to immigrate to new countries, it can be time-consuming to sea
 
 ## Web App
 
-**Insert GIF here**
-[world Happiness Dashboard (to update after deployment)](www.google.com).
+![demo](img/demo.gif)
+[world Happiness Dashboard](https://dsci-532-2025-11-world-happiness-1.onrender.com/)
 
 ## Reporting Issues
 
