@@ -60,4 +60,4 @@ flask run --host=127.0.0.1 --port=8050
 
 ### Step 7: To view the app, enter this URL in your web browser address bar
 
-http://127.0.0.1:8050/
+http://127.0.0.1:8050/ 
