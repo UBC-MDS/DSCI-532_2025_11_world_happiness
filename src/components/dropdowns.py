@@ -8,6 +8,7 @@ dropdown_multi_cat = html.Div([
         multi=True,
         placeholder='Select 3 to 5 categories...',
         value=[],  # Initially no options selected
+        style={"font-size": "12px"}
     )
 ])
 
@@ -18,6 +19,7 @@ dropdown_countries = html.Div([
         multi=True,
         placeholder='Select up to 3 countries...',
         value=[],  # Initially no options selected
+        style={"font-size": "12px"}
     )
 ])
 
@@ -26,7 +28,8 @@ dropdown_year = html.Div([
     id="year-dropdown",
     options = all_years,
     value=2024,
-    clearable = False
+    clearable = False,
+    style={"font-size": "12px"}
     )
 ])
 
@@ -35,7 +38,8 @@ dropdown_feature_line_chart = html.Div([
     id="line-chart-feature-dropdown",
     options = all_features,
     value="Happiness Score",
-    clearable = False
+    clearable = False,
+    style={"font-size": "12px"}
     )
 ])
 
@@ -44,6 +48,7 @@ dropdown_continents = html.Div([
         id="continent-dropdown",
         options = all_continents,
         value='All Continents',
-        clearable = False
+        clearable = False,
+        style={"font-size": "12px"}
     )
 ])
