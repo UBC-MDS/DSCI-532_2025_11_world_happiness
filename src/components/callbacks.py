@@ -89,4 +89,4 @@ def register_callbacks(app):
 
     filtered_df = pd.merge(geo_countries, filtered_df, on="Country", how="left")
     
-    return map_viz(filtered_df)
+    return map_viz(geo_countries, filtered_df)

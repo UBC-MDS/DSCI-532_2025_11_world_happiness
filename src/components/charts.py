@@ -58,13 +58,21 @@ def line_chart(filtered_df, selected_feature, selected_continent):
                        line_color = "red")
     return fig
 
-def map_viz(filtered_df):
+def map_viz(base_df, filtered_df):
     hover = alt.selection_point(fields=['Country'], on='pointerover', empty=False)
+    
+    #full world map
+    full_map = alt.Chart(base_df, width=1200).mark_geoshape().encode(
+        color = alt.value("lightgrey")
+    )
 
-    chart = alt.Chart(filtered_df, width=1200).mark_geoshape().encode(
-    color=alt.Color('Happiness Score', scale=alt.Scale(scheme='redyellowgreen'), legend=alt.Legend(title='Happiness Score')),
-    tooltip=['Country', alt.Tooltip('Happiness Score', format='.2f')],
-    stroke=alt.condition(hover, alt.value('white'), alt.value('#222222'))
-    ).configure(background='transparent').add_params(hover).interactive()
+    #filtered map based on continent and year
+    filtered_map = alt.Chart(filtered_df, width=1200).mark_geoshape().encode(
+        color=alt.Color('Happiness Score', scale=alt.Scale(scheme='redyellowgreen'), legend=alt.Legend(title='Happiness Score')),
+        tooltip=['Country', alt.Tooltip('Happiness Score', format='.2f')],
+        stroke=alt.condition(hover, alt.value('white'), alt.value('#222222'))
+        ).add_params(hover).interactive()
+    
+    map = full_map + filtered_map
 
-    return chart.to_dict(format='vega')
+    return map.to_dict(format='vega')
