@@ -24,7 +24,7 @@ register_callbacks(app)
 
 # Run the app/dashboard
 if __name__ == '__main__':
-    #app.run(debug=False)
+    #app.run()
     #app.enable_dev_tools(debug=True, dev_tools_hot_reload=True)
 
     app.run(host='0.0.0.0', port=8050, debug=False)

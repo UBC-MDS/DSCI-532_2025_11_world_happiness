@@ -62,12 +62,12 @@ def map_viz(base_df, filtered_df):
     hover = alt.selection_point(fields=['Country'], on='pointerover', empty=False)
     
     #full world map
-    full_map = alt.Chart(base_df, width=1200).mark_geoshape().encode(
+    full_map = alt.Chart(base_df, width=1100).mark_geoshape().encode(
         color = alt.value("lightgrey")
     )
 
     #filtered map based on continent and year
-    filtered_map = alt.Chart(filtered_df, width=1200).mark_geoshape().encode(
+    filtered_map = alt.Chart(filtered_df, width=1100).mark_geoshape().encode(
         color=alt.Color('Happiness Score', scale=alt.Scale(scheme='redyellowgreen'), legend=alt.Legend(title='Happiness Score')),
         tooltip=['Country', alt.Tooltip('Happiness Score', format='.2f')],
         stroke=alt.condition(hover, alt.value('white'), alt.value('#222222'))
