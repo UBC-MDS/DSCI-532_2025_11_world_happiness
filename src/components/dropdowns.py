@@ -1,5 +1,5 @@
 from dash import dcc, html
-from components.data import all_features, all_countries, all_years, all_continents
+from components.data import all_features, all_countries, all_continents #,all_years
 
 dropdown_multi_cat = html.Div([
     dcc.Dropdown(
@@ -23,15 +23,15 @@ dropdown_countries = html.Div([
     )
 ])
 
-dropdown_year = html.Div([
-    dcc.Dropdown(
-    id="year-dropdown",
-    options = all_years,
-    value=2024,
-    clearable = False,
-    style={"font-size": "12px"}
-    )
-])
+# dropdown_year = html.Div([
+#     dcc.Dropdown(
+#     id="year-dropdown",
+#     options = all_years,
+#     value=2024,
+#     clearable = False,
+#     style={"font-size": "12px"}
+#     )
+# ])
 
 dropdown_feature_line_chart = html.Div([
     dcc.Dropdown(
