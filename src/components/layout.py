@@ -19,6 +19,26 @@ layout = html.Div([
                             }), width=15),
             ]),
 
+        # Step 1 - top level filters
+        dbc.Row([
+            dbc.Col(dropdown_year, width=6),
+            dbc.Col(dropdown_continents, width=6),
+            ]),
+        # Step 1 - map
+        dbc.Row([
+            dbc.Col(dvc.Vega(id='map', spec={}), width=12, className="p-0")
+        ], justify="center"),
+        dbc.Row([
+            # Step 2 - Line Chart
+            dbc.Col(
+                html.Div([
+                    html.H3("Regional Statistics"),
+                    dropdown_feature_line_chart,
+                    dcc.Graph(id="line-chart")
+                ]),
+                width=6
+            ),
+            
         # Side column
         dbc.Row([
             dbc.Col(
