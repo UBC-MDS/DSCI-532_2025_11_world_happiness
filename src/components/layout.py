@@ -2,7 +2,8 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 import dash_vega_components as dvc
 
-from components.dropdowns import dropdown_multi_cat, dropdown_countries, dropdown_year, dropdown_feature_line_chart, dropdown_continents
+from components.dropdowns import dropdown_multi_cat, dropdown_countries, dropdown_feature_line_chart, dropdown_continents
+from components.sliders import year_slider
 
 features = ["Happiness Score", "GDP per Capita", "Social Support", "Healthy Life Expectancy", "Freedom to Make Life Choices",
             "Generosity", "Perceptions of Corruption"]
@@ -19,33 +20,13 @@ layout = html.Div([
                             }), width=15),
             ]),
 
-        # Step 1 - top level filters
-        dbc.Row([
-            dbc.Col(dropdown_year, width=6),
-            dbc.Col(dropdown_continents, width=6),
-            ]),
-        # Step 1 - map
-        dbc.Row([
-            dbc.Col(dvc.Vega(id='map', spec={}), width=12, className="p-0")
-        ], justify="center"),
-        dbc.Row([
-            # Step 2 - Line Chart
-            dbc.Col(
-                html.Div([
-                    html.H3("Regional Statistics"),
-                    dropdown_feature_line_chart,
-                    dcc.Graph(id="line-chart")
-                ]),
-                width=6
-            ),
-            
         # Side column
         dbc.Row([
             dbc.Col(
                 html.Div([
                     html.H4("Filters"),
                     html.Label("Select Year"),
-                    dropdown_year,
+                    year_slider,
                     html.Label("Select Continent"),
                     dropdown_continents,
                     html.Label("Select Feature"),
