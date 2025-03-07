@@ -3,6 +3,7 @@ from dash import html, dcc
 
 from components.charts import line_chart, radar_chart, map_viz
 from components.data import happiness_data, all_features, all_countries, geo_countries
+from components.sliders import year_slider
 
 import pandas as pd
 import altair as alt
@@ -44,7 +45,7 @@ def register_callbacks(app):
        Output('message-container', 'children')],
        [Input('dropdown_multi_cat', 'value'),
        Input('dropdown_countries', 'value'),
-       Input('year-dropdown', 'value')]
+       Input('year_slider', 'value')]
    )
    def update_radar_chart(selected_categories, selected_countries, selected_year):
         
@@ -64,7 +65,7 @@ def register_callbacks(app):
     [Output('line-chart', 'figure')],
     [Input('line-chart-feature-dropdown', 'value'),
     Input('continent-dropdown', 'value'),
-    Input('year-dropdown', 'value')])   
+    Input('year_slider', 'value')])   
    def update_line_chart(selected_feature, selected_continent, selected_year):
     if selected_continent == 'All Continents':
        filter_df = happiness_data[(happiness_data["Year"] == selected_year)]
@@ -76,7 +77,7 @@ def register_callbacks(app):
    
    @app.callback(
     Output('map', 'spec'),
-    Input('year-dropdown', 'value'),
+    Input('year_slider', 'value'),
     Input('continent-dropdown', 'value')
     )
    def map(year_select, continent_select):

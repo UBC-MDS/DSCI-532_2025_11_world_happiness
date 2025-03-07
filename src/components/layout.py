@@ -2,7 +2,8 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 import dash_vega_components as dvc
 
-from components.dropdowns import dropdown_multi_cat, dropdown_countries, dropdown_year, dropdown_feature_line_chart, dropdown_continents
+from components.dropdowns import dropdown_multi_cat, dropdown_countries, dropdown_feature_line_chart, dropdown_continents
+from components.sliders import year_slider
 
 features = ["Happiness Score", "GDP per Capita", "Social Support", "Healthy Life Expectancy", "Freedom to Make Life Choices",
             "Generosity", "Perceptions of Corruption"]
@@ -25,7 +26,7 @@ layout = html.Div([
                 html.Div([
                     html.H4("Filters"),
                     html.Label("Select Year"),
-                    dropdown_year,
+                    year_slider,
                     html.Label("Select Continent"),
                     dropdown_continents,
                     html.Label("Select Feature"),
