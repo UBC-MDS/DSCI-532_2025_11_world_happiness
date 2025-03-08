@@ -3,7 +3,7 @@ import geopandas as gpd
 import os
 
 # happiness data
-file_path = os.path.join(os.path.dirname(__file__), "../../data/processed/reporting_happiness_dataset.csv")
+file_path = os.path.join(os.path.dirname(__file__), "../../data/processed/World_Happiness_processed_data.csv")
 happiness_data = pd.read_csv(os.path.abspath(file_path))
 
 cols = ['Happiness Score', 'GDP per Capita', 'Social Support', 'Healthy Life Expectancy', 'Freedom to Make Life Choices', 'Generosity', 'Perceptions of Corruption']
