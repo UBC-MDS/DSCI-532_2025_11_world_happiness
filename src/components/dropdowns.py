@@ -1,5 +1,5 @@
 from dash import dcc, html
-from components.data import all_features, all_countries, all_continents #,all_years
+from components.data import all_features, all_countries, all_continents
 
 dropdown_multi_cat = html.Div([
     dcc.Dropdown(
@@ -8,7 +8,7 @@ dropdown_multi_cat = html.Div([
         multi=True,
         placeholder='Select 3 to 5 categories...',
         value=[],  # Initially no options selected
-        style={"font-size": "12px"}
+        style={"font-size": "1em", 'color': 'dimgray'}
     )
 ])
 
@@ -19,19 +19,9 @@ dropdown_countries = html.Div([
         multi=True,
         placeholder='Select up to 3 countries...',
         value=[],  # Initially no options selected
-        style={"font-size": "12px"}
+        style={"font-size": "1em", 'color': 'dimgray'}
     )
 ])
-
-# dropdown_year = html.Div([
-#     dcc.Dropdown(
-#     id="year-dropdown",
-#     options = all_years,
-#     value=2024,
-#     clearable = False,
-#     style={"font-size": "12px"}
-#     )
-# ])
 
 dropdown_feature_line_chart = html.Div([
     dcc.Dropdown(
@@ -39,7 +29,7 @@ dropdown_feature_line_chart = html.Div([
     options = all_features,
     value="Happiness Score",
     clearable = False,
-    style={"font-size": "12px"}
+    style={"font-size": "12px", 'color': 'dimgray'}
     )
 ])
 
@@ -49,6 +39,6 @@ dropdown_continents = html.Div([
         options = all_continents,
         value='All Continents',
         clearable = False,
-        style={"font-size": "12px"}
+        style={"font-size": "12px", 'color': 'dimgray'}
     )
 ])

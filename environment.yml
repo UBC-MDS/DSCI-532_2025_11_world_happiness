@@ -18,7 +18,9 @@ dependencies:
   - nbconvert
   - pip
   - pip:
-      - country_converter
+      - pycountry_convert
       - geopandas
       - dash-vega-components
       - kagglehub
+      - scikit-learn
+      - xlrd
