@@ -24,6 +24,8 @@ register_callbacks(app)
 
 # Run the app/dashboard
 if __name__ == '__main__':
-    # app.run(debug=False)
+    # please DON'T DELETE these 2 lines - comment them out instead :)
     app.enable_dev_tools(debug=True, dev_tools_hot_reload=True)
     app.run(debug=True, host="127.0.0.1", port=8050, dev_tools_hot_reload=True)
+
+    # app.run(host='0.0.0.0', port=8050, debug=False)
