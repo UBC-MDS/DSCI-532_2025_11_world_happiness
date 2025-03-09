@@ -42,4 +42,5 @@ Future improvements:
 
 - Increase interpretability of data as each category is on different scales with different units
 - Ensure consistent padding throughout the app and increase padding where necessary
+- Make radar chart have consistent color theme with the rest of the app
 - (If possible) make scrolling down easier when user's cursor is on the map

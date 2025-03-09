@@ -8,8 +8,9 @@ For those looking to immigrate to new countries, it can be time-consuming to sea
 
 ## Web App
 
+[The deployed app](https://dsci-532-2025-11-world-happiness-2.onrender.com/) is very very slow - we apologize!
+
 ![demo](img/demo.gif)
-[world Happiness Dashboard](https://dsci-532-2025-11-world-happiness-1.onrender.com/)
 
 ## Reporting Issues
 
