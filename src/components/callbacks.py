@@ -2,8 +2,7 @@ from dash.dependencies import Input, Output
 from dash import html, dcc
 
 from components.charts import line_chart, radar_chart, map_viz
-from components.data import happiness_data, all_features, all_countries, geo_countries
-from components.sliders import year_slider
+from components.data import happiness_data, radar_data, all_features, all_countries, geo_countries
 
 import pandas as pd
 import altair as alt
@@ -55,8 +54,8 @@ def register_callbacks(app):
     
     # Filter the data based on selected categories
     selected_categories.append('Country')
-    filtered_df = happiness_data.loc[:, happiness_data.columns.isin(selected_categories)]
-    filtered_df = filtered_df[(filtered_df['Country'].isin(selected_countries)) & (happiness_data["Year"] == selected_year)]
+    filtered_df = radar_data.loc[:, radar_data.columns.isin(selected_categories)]
+    filtered_df = filtered_df[(filtered_df['Country'].isin(selected_countries)) & (radar_data["Year"] == selected_year)]
     
     return dcc.Graph(id='radar-chart', figure=radar_chart(filtered_df)), None
    
@@ -77,17 +76,18 @@ def register_callbacks(app):
    
    @app.callback(
     Output('map', 'spec'),
-    Input('year_slider', 'value'),
-    Input('continent-dropdown', 'value')
+    [Input('line-chart-feature-dropdown', 'value'),
+    Input('continent-dropdown', 'value'),
+    Input('year_slider', 'value')]
     )
-   def map(year_select, continent_select):
-    happiness_by_year = happiness_data[happiness_data['Year'] == year_select]
-    
-    if continent_select != 'All Continents':
-        filtered_df = happiness_by_year[happiness_by_year['Continent'] == continent_select]
+   def map(selected_feature, selected_continent, selected_year):
+    if selected_continent == 'All Continents':
+       filter_df = happiness_data[(happiness_data["Year"] == selected_year)]
     else:
-        filtered_df = happiness_by_year
+        filter_df = happiness_data[(happiness_data["Continent"] == selected_continent) & (happiness_data["Year"] == selected_year)]
 
-    filtered_df = pd.merge(geo_countries, filtered_df, on="Country", how="left")
+    filtered_df = pd.merge(geo_countries, filter_df, on="Country", how="left")
     
-    return map_viz(geo_countries, filtered_df)
+    return map_viz(geo_countries, filtered_df, selected_feature)
+   
+

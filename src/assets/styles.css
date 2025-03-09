@@ -1,0 +1,14 @@
+.select {
+    font-size: 1.2em;
+    padding: .5em;
+    color: #3182bd;
+  }
+
+.dash-dropdown .Select-control .Select-value {
+    color: dimgray !important;
+}
+
+/* Optional: Change the color of the selected option when hovering or focusing */
+.dash-dropdown .Select-option--is-focused {
+    background-color: lightgray !important;
+}
