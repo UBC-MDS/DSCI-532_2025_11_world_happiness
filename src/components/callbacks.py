@@ -50,7 +50,7 @@ def register_callbacks(app):
         
     # If not 3-5 categories or more than 1 country selected, display message
     if len(selected_categories) < 3 or len(selected_countries) < 2:
-        return None, html.Label('Choose 3-5 categories and up to 3 countries')
+        return None, html.Label('Please select 3-5 categories and up to 3 countries to see the radar chart.')
     
     # Filter the data based on selected categories
     selected_categories.append('Country')
