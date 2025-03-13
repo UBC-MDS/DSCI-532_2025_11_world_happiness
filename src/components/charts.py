@@ -1,7 +1,8 @@
 import plotly.graph_objects as go
 import plotly.express as px
 import altair as alt
-
+import functools
+from components.data import filter_happiness_data
 from components.chart_utils import split_label, convert_legend
 
 def radar_chart(filtered_df):
@@ -47,12 +48,20 @@ def radar_chart(filtered_df):
 
    return fig
 
+@functools.lru_cache(maxsize=10)
+def get_top_10_countries(year, continent, feature):
+    """Return top 10 countries for selected feature"""
+    df = filter_happiness_data(year, continent)
+    return df.nlargest(10, feature)
+
+
 def line_chart(filtered_df, selected_feature, selected_continent):
     """
     Generate a line chart for the top 10 countries in a region, ranked by the selected feature.
     """
     # Find top 10 countries by feature in region
-    top_10_countries = filtered_df.nlargest(10, selected_feature)
+    year = filtered_df["Year"].iloc[0]
+    top_10_countries = get_top_10_countries(year, selected_continent, selected_feature)
     # Find the Average Regional Column
     avg_column = "Average Continent " + selected_feature
     continent_avg = filtered_df[avg_column].iloc[0]
