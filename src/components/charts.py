@@ -95,7 +95,7 @@ def line_chart(filtered_df, selected_feature, selected_continent):
             'font': {
                 'size': 25, 
                 'family': 'Helvetica',
-                'color': 'black'
+                'color': '#f1a835'
             }
         },
             xaxis=dict(

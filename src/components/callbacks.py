@@ -2,7 +2,7 @@ from dash.dependencies import Input, Output
 from dash import html, dcc
 
 from components.charts import line_chart, radar_chart, map_viz
-from components.data import happiness_data, radar_data, all_features, all_countries, geo_countries
+from components.data import happiness_data, all_features, all_countries, geo_countries
 
 import pandas as pd
 import altair as alt
@@ -35,8 +35,7 @@ def register_callbacks(app):
        else:
            updated_options = all_countries
        
-       return selected_values, updated_options  # Return both the updated values and options
-   
+       return selected_values, updated_options  # Return both the updated values and options   
    
    # Create radar chart
    @app.callback(
@@ -54,8 +53,8 @@ def register_callbacks(app):
     
     # Filter the data based on selected categories
     selected_categories.append('Country')
-    filtered_df = radar_data.loc[:, radar_data.columns.isin(selected_categories)]
-    filtered_df = filtered_df[(filtered_df['Country'].isin(selected_countries)) & (radar_data["Year"] == selected_year)]
+    filtered_df = happiness_data.loc[:, happiness_data.columns.isin(selected_categories)]
+    filtered_df = filtered_df[(filtered_df['Country'].isin(selected_countries)) & (happiness_data["Year"] == selected_year)]
     
     return dcc.Graph(id='radar-chart', figure=radar_chart(filtered_df)), None
    
@@ -64,7 +63,7 @@ def register_callbacks(app):
     [Output('line-chart', 'figure')],
     [Input('line-chart-feature-dropdown', 'value'),
     Input('continent-dropdown', 'value'),
-    Input('year_slider', 'value')])   
+    Input('year_slider_1', 'value')])   
    def update_line_chart(selected_feature, selected_continent, selected_year):
     if selected_continent == 'All Continents':
        filter_df = happiness_data[(happiness_data["Year"] == selected_year)]
@@ -74,6 +73,7 @@ def register_callbacks(app):
 
     return [fig]
    
+   # Display map
    @app.callback(
     Output('map', 'spec'),
     [Input('line-chart-feature-dropdown', 'value'),

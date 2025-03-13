@@ -25,9 +25,3 @@ geo_countries = geo_countries[
 ).query(
     'Continent != "Antarctica"'
 )
-
-# radar chart data
-scaler = MinMaxScaler()
-values = happiness_data[happiness_data.columns.intersection(cols)]
-scaled_data = pd.DataFrame(scaler.fit_transform(values), columns=values.columns)
-radar_data = pd.concat([happiness_data.iloc[:, :3], scaled_data], axis=1)
