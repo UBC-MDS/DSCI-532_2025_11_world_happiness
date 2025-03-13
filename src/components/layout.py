@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 import dash_vega_components as dvc
 
 from components.dropdowns import dropdown_multi_cat, dropdown_countries, dropdown_feature_line_chart, dropdown_continents
-from components.sliders import year_slider
+from components.sliders import year_slider_tab1, year_slider_tab2
 
 features = ["Happiness Score", "GDP per Capita", "Social Support", "Healthy Life Expectancy", "Freedom to Make Life Choices",
             "Generosity", "Perceptions of Corruption"]
@@ -28,7 +28,7 @@ layout = html.Div([
                                 dbc.Col(
                                     html.Div([
                                         html.Label("Year", className='select'),
-                                        year_slider,
+                                        year_slider_tab1,
                                         html.Label("Continent", className='select'),
                                         dropdown_continents,
                                         html.Label("Category", className='select'),
@@ -44,7 +44,7 @@ layout = html.Div([
                                                 style={"font-size": "13px", "margin-top": "3em", 'color': 'dimgray'}
                                             )
                                         )
-                                    ]), width = 3
+                                    ]), width = 3, className='side-bar'
                                 ),
                                 dbc.Col(
                                     html.Div([
@@ -61,14 +61,14 @@ layout = html.Div([
                                     ]), width = 9
                                 )
                             ])
-                        ], label = "Main"),
+                        ], label = "Overview", tab_id="tab1", active_label_style={"color": "#3182bd"}, label_style={"color": "dimgray"}),
                         
                         dbc.Tab([
                             dbc.Row([                         
                                 dbc.Col(
                                     html.Div([
                                         html.Label("Year", className='select'),
-                                        year_slider,
+                                        year_slider_tab2,
                                         html.Label("Countries", className='select'),
                                         dropdown_countries,
                                         html.Label("Category", className='select'),
@@ -82,7 +82,7 @@ layout = html.Div([
                                                 'Users can compare countries across all continents.'
                                             ], style={"font-size": "13px", "margin-top": "3em", 'color': 'dimgray'})
                                         )
-                                    ]), width = 3
+                                    ]), width = 3, className='side-bar'
                                 ),
                                 
                                 dbc.Col(
@@ -103,8 +103,12 @@ layout = html.Div([
                                     style = {'margin-bottom': '2em'}
                                 )
                             ]),
-                        ], label = "Radar Chart")
-                    ])
+                        ], label = "Compare Countries", tab_id="tab2", active_label_style={"color": "#3182bd"}, label_style={"color": "dimgray"})
+                    ],
+                    id="tabs",
+                    active_tab="tab1",
+                    className="justify-content-center" 
+                )
                 ])
             ])
         ])

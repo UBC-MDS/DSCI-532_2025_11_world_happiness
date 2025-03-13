@@ -15,14 +15,12 @@ all_continents = [{'label': 'All Continents', 'value': 'All Continents'}] + [{'l
 all_years = [{"label": year, "value": year} for year in sorted(happiness_data["Year"].unique())]
 
 # map data 
-url = "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
-geo_countries = gpd.read_file(url)
+file_path_geo = os.path.join(os.path.dirname(__file__), "../../data/processed/world_countries.parquet")
+geo_countries = gpd.read_parquet(os.path.abspath(file_path_geo))
 
 geo_countries = geo_countries[
-    ["NAME", "CONTINENT", 'geometry']
-].rename(
-    columns = {'NAME': 'Country', 'CONTINENT':'Continent'}
-).replace(
+    ["Country", "Continent", 'geometry']
+].replace(
     {'Continent': ['North America', 'South America']}, 'Americas'
 ).query(
     'Continent != "Antarctica"'
