@@ -1,4 +1,3 @@
-// assets/scroll.js
 window.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('select');
     dropdowns.forEach(function(dropdown) {

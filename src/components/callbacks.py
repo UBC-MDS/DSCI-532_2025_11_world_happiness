@@ -44,7 +44,7 @@ def register_callbacks(app):
        Output('message-container', 'children')],
        [Input('dropdown_multi_cat', 'value'),
        Input('dropdown_countries', 'value'),
-       Input('year_slider', 'value')]
+       Input('year_slider_2', 'value')]
    )
    def update_radar_chart(selected_categories, selected_countries, selected_year):
         
@@ -78,7 +78,7 @@ def register_callbacks(app):
     Output('map', 'spec'),
     [Input('line-chart-feature-dropdown', 'value'),
     Input('continent-dropdown', 'value'),
-    Input('year_slider', 'value')]
+    Input('year_slider_1', 'value')]
     )
    def map(selected_feature, selected_continent, selected_year):
     if selected_continent == 'All Continents':

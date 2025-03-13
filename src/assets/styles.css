@@ -12,3 +12,11 @@
 .dash-dropdown .Select-option--is-focused {
     background-color: lightgray !important;
 }
+
+.side-bar {
+    position: fixed; 
+    top: 130px;  
+    right: 10px;  
+    padding: 10px;
+    z-index: 1000
+}
