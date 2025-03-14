@@ -8,7 +8,7 @@ For those looking to immigrate to new countries, it can be time-consuming to sea
 
 ## Web App
 
-[The deployed app](https://dsci-532-2025-11-world-happiness-2.onrender.com/) is very very slow - we apologize!
+[The deployed app](https://dsci-532-2025-11-world-happiness-2.onrender.com/) may be a bit slow.
 
 ![demo](img/demo.gif)
 
@@ -59,6 +59,6 @@ export FLASK_DEBUG=1
 flask run --host=127.0.0.1 --port=8050
 ```
 
-### Step 7: To view the app, enter this URL in your web browser address bar
+### Step 7: View the app in your browser
 
 http://127.0.0.1:8050/
