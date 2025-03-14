@@ -16,10 +16,6 @@ For those looking to immigrate to new countries, it can be time-consuming to sea
 
 If you want to report a problem or suggest an enhancement we'd love for you to [open an issue](https://github.com/UBC-MDS/DSCI-532_2025_11_world_happiness/issues).
 
-## Contributing
-
-We welcome you to contribute to our dashboard. Please check out guidelines and instructions [here](https://github.com/UBC-MDS/DSCI-532_2025_11_world_happiness/blob/main/CONTRIBUTING.md).
-
 ## Local Installation Instructions
 
 ### Step 1: In your terminal, from project root directory, create conda environment
@@ -62,3 +58,11 @@ flask run --host=127.0.0.1 --port=8050
 ### Step 7: View the app in your browser
 
 http://127.0.0.1:8050/
+
+## Contributing
+
+We welcome you to contribute to our dashboard. Please check out guidelines and instructions [here](https://github.com/UBC-MDS/DSCI-532_2025_11_world_happiness/blob/main/CONTRIBUTING.md).
+
+## [MIT License](https://github.com/UBC-MDS/DSCI-532_2025_11_world_happiness/blob/main/LICENSE.md)
+
+Copyright (c) 2025, Yuhan Fan, Sepehr Heydarian, Jessica Kuo, Susannah Sun
