@@ -20,7 +20,7 @@ side_bar_overview = html.Div([
             '1: Country with most corruption.'],
             style={"font-size": "13px", "margin-top": "3em", 'color': 'dimgray'}
         )
-    ),
+    )
 ])
 
 side_bar_compare_countries = html.Div([

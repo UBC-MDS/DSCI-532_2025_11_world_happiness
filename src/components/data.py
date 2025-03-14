@@ -1,6 +1,5 @@
 import pandas as pd
 import geopandas as gpd
-from sklearn.preprocessing import MinMaxScaler
 import os
 import functools
 
