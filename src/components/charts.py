@@ -67,12 +67,12 @@ def line_chart(filtered_df, selected_feature, selected_continent):
     continent_avg = filtered_df[avg_column].iloc[0]
 
     # Create figure
-    fig = px.line(
+    fig = px.bar(
         top_10_countries,
         x="Country",
         y=selected_feature,
         title=f"Top Countries by {selected_feature} in {selected_continent}",
-        markers=True,
+        #markers=True,
         hover_data={  
             "Country": False,  # Set to False to avoid the default format
             selected_feature: False,  # Set to False to avoid the default format
@@ -80,11 +80,17 @@ def line_chart(filtered_df, selected_feature, selected_continent):
             "Year": False  # Set to False to avoid the default format
         }
      )
+    average_line_text = (
+        f"Global Average: {continent_avg:.2f}"
+        if selected_continent == "All Continents"
+        else f"Continent Average: {continent_avg:.2f}"
+    )
+
     # Add average line
     fig.add_hline(
         y=continent_avg, 
         line_dash="dash",
-        annotation_text=f"Continent Average: {continent_avg:.2f}",
+        annotation_text=average_line_text,
         annotation_position="top",  # Keep the position at the top
         line_color="#f1a835",
         annotation=dict(
@@ -130,7 +136,7 @@ def line_chart(filtered_df, selected_feature, selected_continent):
     )
     customdata=top_10_countries[[selected_feature, "Continent", "Year"]].values
     fig.update_traces(
-        line=dict(color='#3182bd'),
+        marker=dict(color='#3182bd'),
         hovertemplate=(
             "<b>%{x}</b><br>"  # Country
             + f"{selected_feature}: "
