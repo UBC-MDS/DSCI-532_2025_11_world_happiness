@@ -1,7 +1,7 @@
 from dash.dependencies import Input, Output
 from dash import html, dcc
 from components.charts import line_chart, radar_chart, map_viz
-from components.data import happiness_data, radar_data, all_features, all_countries, geo_countries, load_happiness_data, filter_happiness_data
+from components.data import happiness_data, all_features, all_countries, geo_countries, load_happiness_data, filter_happiness_data
 import pandas as pd
 import altair as alt
 alt.data_transformers.enable('vegafusion')

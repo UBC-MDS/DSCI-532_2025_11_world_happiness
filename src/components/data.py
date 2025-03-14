@@ -4,13 +4,13 @@ from sklearn.preprocessing import MinMaxScaler
 import os
 import functools
 
-file_path = os.path.join(os.path.dirname(__file__), "../../data/processed/World_Happiness_processed_data.csv")
+file_path = os.path.join(os.path.dirname(__file__), "../../data/processed/World_Happiness_processed_data.parquet")
 
 # app data
 @functools.lru_cache(maxsize=1)
 def load_happiness_data():
     """Loads and caches the processed dataset"""
-    return pd.read_csv(os.path.abspath(file_path))
+    return pd.read_parquet(os.path.abspath(file_path))
 
 happiness_data = load_happiness_data()
 cols = ['Happiness Score', 'GDP per Capita', 'Social Support', 'Healthy Life Expectancy', 'Freedom to Make Life Choices', 'Generosity', 'Perceptions of Corruption']
