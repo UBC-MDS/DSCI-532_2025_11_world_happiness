@@ -11,7 +11,7 @@ from components.callbacks import register_callbacks
 from components.layout import layout
 
 # Initialize the app
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, title="World Happiness Dashboard", external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Expose the Flask server for Flask commands
 server = app.server  

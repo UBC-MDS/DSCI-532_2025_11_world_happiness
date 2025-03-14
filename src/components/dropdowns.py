@@ -7,7 +7,7 @@ dropdown_multi_cat = html.Div([
         options=all_features,
         multi=True,
         placeholder='Select 3 to 5 categories...',
-        value=[],  # Initially no options selected
+        value=['GDP per Capita', 'Social Support', 'Freedom to Make Life Choices', 'Perceptions of Corruption', 'Healthy Life Expectancy'],  # Initially no options selected
         style={"font-size": "1em", 'color': 'dimgray'}
     )
 ])
@@ -18,7 +18,7 @@ dropdown_countries = html.Div([
         options=all_countries,
         multi=True,
         placeholder='Select up to 3 countries...',
-        value=[],  # Initially no options selected
+        value=['Canada', 'Australia', 'France'],  # Initially no options selected
         style={"font-size": "1em", 'color': 'dimgray'}
     )
 ])

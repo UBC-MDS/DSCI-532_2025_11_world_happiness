@@ -1,22 +1,37 @@
 import plotly.graph_objects as go
 import plotly.express as px
 import altair as alt
-
+import functools
+from components.data import filter_happiness_data
 from components.chart_utils import split_label, convert_legend
 
 def radar_chart(filtered_df):
-   fig = go.Figure()
+   fig = go.Figure()   
+   color_palette = [
+       {"line": "#e65427", "fill": "rgba(230, 84, 39, 0.3)"},   # Muted Orange
+       {"line": "#9b59b6", "fill": "rgba(155, 89, 182, 0.3)"},   # Complementary Purple
+       {"line": "#f1a835", "fill": "rgba(241, 168, 53, 0.3)"},  # Contrast Yellow
+       ]
+   unique_countries = filtered_df['Country'].unique()
    
-   for country in filtered_df['Country'].unique():
-       country_data = filtered_df[filtered_df['Country'] == country].drop(columns=['Country']).iloc[0]
-       fig.add_trace(go.Scatterpolar(
-           r=country_data.values,
-           theta=[split_label(label) for label in country_data.index],
-           fill='toself',
-           name=split_label(convert_legend(country)),
-           hovertemplate="<b>%{text}</b><br>%{theta}: %{r:.2f}",
-           text=[country] * len(country_data), 
-       ))
+   for i, country in enumerate(unique_countries):
+        country_data = filtered_df[filtered_df['Country'] == country].drop(columns=['Country']).iloc[0]
+        
+        colors = color_palette[i % len(color_palette)]  # Use modulo for cyclic color assignment
+        
+        trace = go.Scatterpolar(
+            r=country_data.values,
+            theta=[split_label(label) for label in country_data.index],
+            fill='toself',
+            fillcolor=colors["fill"],  # Set custom fill color
+            name=split_label(convert_legend(country)),
+            hovertemplate="<b>%{text}</b><br>%{theta}: %{r:.2f}",
+            text=[country] * len(country_data),
+            opacity=0.6,
+            line=dict(color=colors["line"])  # Set custom line (border) color
+        )
+        
+        fig.add_trace(trace)
 
    # Reorder traces to ensure smaller countries' traces are on top
    fig.data = sorted(fig.data, key=lambda trace: max(trace['r']), reverse=True)
@@ -47,23 +62,32 @@ def radar_chart(filtered_df):
 
    return fig
 
+@functools.lru_cache(maxsize=10)
+def get_top_10_countries(year, continent, feature):
+    """Return top 10 countries for selected feature"""
+    df = filter_happiness_data(year, continent)
+    return df.nlargest(10, feature)
+
+
 def line_chart(filtered_df, selected_feature, selected_continent):
     """
     Generate a line chart for the top 10 countries in a region, ranked by the selected feature.
     """
     # Find top 10 countries by feature in region
-    top_10_countries = filtered_df.nlargest(10, selected_feature)
+    year = filtered_df["Year"].iloc[0]
+    top_10_countries = get_top_10_countries(year, selected_continent, selected_feature)
+    top_10_countries['Country'] = top_10_countries['Country'].apply(lambda x: split_label(x)).tolist()
     # Find the Average Regional Column
     avg_column = "Average Continent " + selected_feature
     continent_avg = filtered_df[avg_column].iloc[0]
 
     # Create figure
-    fig = px.line(
+    fig = px.bar(
         top_10_countries,
         x="Country",
         y=selected_feature,
         title=f"Top Countries by {selected_feature} in {selected_continent}",
-        markers=True,
+        #markers=True,
         hover_data={  
             "Country": False,  # Set to False to avoid the default format
             selected_feature: False,  # Set to False to avoid the default format
@@ -71,22 +95,28 @@ def line_chart(filtered_df, selected_feature, selected_continent):
             "Year": False  # Set to False to avoid the default format
         }
      )
+    average_line_text = (
+        f"Global Average:<br>{continent_avg:.2f}"
+        if selected_continent == "All Continents"
+        else f"Continent Average:<br>{continent_avg:.2f}"
+    )
+
     # Add average line
     fig.add_hline(
         y=continent_avg, 
         line_dash="dash",
-        annotation_text=f"Continent Average: {continent_avg:.2f}",
-        annotation_position="top",  # Keep the position at the top
+        annotation_text=average_line_text,
+        annotation_position="right",  # Keep the position at the right
         line_color="#f1a835",
         annotation=dict(
-            x=0.5,  # Set the x position to 50% for center alignment
-            xanchor="center",  # Center align the annotation
+            xanchor="left",  # left align the annotation
             showarrow=False,
             font=dict(color="#f1a835", size=14)
         )
-                  )
+    )
     
     fig.update_layout(
+        margin=dict(r=150),
         title={
             'text': f"Top Countries by {selected_feature} in {selected_continent}",
             'x': 0.5,  
@@ -95,7 +125,7 @@ def line_chart(filtered_df, selected_feature, selected_continent):
             'font': {
                 'size': 25, 
                 'family': 'Helvetica',
-                'color': 'black'
+                'color': '#f1a835'
             }
         },
             xaxis=dict(
@@ -121,7 +151,7 @@ def line_chart(filtered_df, selected_feature, selected_continent):
     )
     customdata=top_10_countries[[selected_feature, "Continent", "Year"]].values
     fig.update_traces(
-        line=dict(color='#3182bd'),
+        marker=dict(color='#3182bd'),
         hovertemplate=(
             "<b>%{x}</b><br>"  # Country
             + f"{selected_feature}: "
